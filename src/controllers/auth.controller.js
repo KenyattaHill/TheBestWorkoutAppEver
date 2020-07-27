@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 async function signUp(request, response) {
   const { firstName, lastName, email, userName, password } = request.body;
-  console.log(request.body)
   const user = new User({
     firstName,
     lastName,
@@ -32,8 +31,14 @@ async function signIn(request, response) {
     });
     return;
   });
+  if (!user) {
+    return response.status(401).send({
+      accessToken: null,
+      message: "invalid user or password",
+    });
+  }
   const passwordIsValid = bcrypt.compareSync(password, user.password);
-  if (!passwordIsValid || !user) {
+  if (!passwordIsValid) {
     return response.status(401).send({
       accessToken: null,
       message: "invalid user or password",

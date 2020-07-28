@@ -15,12 +15,17 @@
     "heroku-postbuild": "npm run build",
     "install": "cd frontend && npm install",
     "start:api": "nodemon ./src/index.js",
-    "test": "jest "
+    "test": "mocha \"./src/tests/**/*.js\""
+  },
+  "mocha": {
+    "timeout": 3000,
+    "slow": 5000
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
@@ -28,8 +33,9 @@
     "mongoose": "^5.9.25"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "concurrently": "^5.2.0",
-    "jest": "^26.1.0",
+    "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   }

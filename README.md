@@ -1,13 +1,19 @@
 # TheBestWorkoutAppEver
 
-## setup
-to install dependencies run the following command:
+## first step
 ```
-npm run setup
+npm install
 ```
 ## development
 to start development:
 ```
 npm start
 ```
+
+## testing 
+to run tests
+```
+npm test
+```
+
 [Deployed Heroku link](https://the-best-workout-app-ever.herokuapp.com/)

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 
 function verifyToken(request, response, next){
-    const token = request.headers.accessToken
+    const token = request.headers['x-access-token'];
     const secret = process.env.TOKEN_SECRET || "this is a secret phrase"
     if (!token) {
         return response.status(403).send({

@@ -1,4 +1,3 @@
-import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import React, { useState } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
@@ -20,7 +19,7 @@ function App() {
     authService.logout(history);
   };
   return (
-    <div>
+    <>
       <Navbar user={user} logout={logout} />
       <Switch>
         <Route exact path='/' render={authGuard(Home)} />
@@ -34,7 +33,7 @@ function App() {
         <Route exact path='/exercises' render={authGuard(Exercises)} />
       </Switch>
       <ToastContainer newestOnTop={true} />
-    </div>
+    </>
   );
 }
 

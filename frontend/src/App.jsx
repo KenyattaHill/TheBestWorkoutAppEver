@@ -13,7 +13,7 @@ import Exercises from './components/exercises/exercises';
 
 function App() {
   const [user, setUser] = useState(authService.getCurrentUser());
-  const history = useHistory()
+  const history = useHistory();
   const logout = () => {
     setUser(null);
     authService.logout(history);

@@ -9,7 +9,7 @@ export default function SignIn({ setUser }) {
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
-  
+
   const OnSubmit = data => {
     setLoading(true);
     authService

@@ -4,22 +4,22 @@ import messageService from './message.service';
 const USER_KEY = 'user'
 
 const signUp = ({ userName, firstName, lastName, email, password }) =>
-axios.post('/api/auth/signUp', {
-  userName,
-  firstName,
-  lastName,
-  email,
-  password
-});
+  axios.post('/api/auth/signUp', {
+    userName,
+    firstName,
+    lastName,
+    email,
+    password
+  });
 
-const signIn = ({userName, password}) =>
-axios.post('/api/auth/signIn', { userName, password })
-.then(response => {
-  if (response.data.accessToken) {
-    localStorage.setItem(USER_KEY, JSON.stringify(response.data))
-  }
-  return response.data;
-})
+const signIn = ({ userName, password }) =>
+  axios.post('/api/auth/signIn', { userName, password })
+    .then(response => {
+      if (response.data.accessToken) {
+        localStorage.setItem(USER_KEY, JSON.stringify(response.data))
+      }
+      return response.data;
+    })
 
 const logout = (history) => {
   localStorage.removeItem(USER_KEY);

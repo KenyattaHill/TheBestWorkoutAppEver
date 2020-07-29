@@ -10,7 +10,7 @@ export default function SignUp() {
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data, e) => {
+  const OnSubmit = (data, e) => {
     setLoading(true);
     authService
       .signUp(data)
@@ -28,7 +28,7 @@ export default function SignUp() {
   return (
     <div className='app-form'>
       <h1>Sign Up</h1>
-      <Form onSubmit={handleSubmit(onSubmit)} loading={loading}>
+      <Form onSubmit={handleSubmit(OnSubmit)} loading={loading}>
         <Form.Field>
           <label>First Name</label>
           <input

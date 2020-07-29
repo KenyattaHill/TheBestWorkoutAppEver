@@ -2,9 +2,10 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-export default function Navbar({ user, setUser, logout }) {
+export default function Navbar({ user, logout }) {
   return (
     <Menu>
+      <Menu.Item header>TheBestWorkOutAppEver</Menu.Item>
       <Menu.Item exact name='home' as={NavLink} to='/' />
       {user && (
         <>

@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/exerciseApp", {
 });
 
 app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+    res.sendFile(path.join(__dirname,'..', "frontend", "build", "index.html"));
 });
 
 const server = app.listen(PORT, () => {

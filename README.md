@@ -16,4 +16,4 @@ to run tests
 npm test
 ```
 
-[Deployed Heroku link](https://the-best-workout-app-ever.herokuapp.com/)
+[Deployed Heroku link](https://yatta-test.herokuapp.com/)

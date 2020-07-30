@@ -1,7 +1,7 @@
 import axios from 'axios';
 import messageService from './message.service';
 
-const USER_KEY = 'user'
+const USER_KEY = 'app-user'
 
 const signUp = ({ userName, firstName, lastName, email, password }) =>
   axios.post('/api/auth/signUp', {

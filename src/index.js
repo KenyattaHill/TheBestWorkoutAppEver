@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const helmet = require('helmet')
 const path = require('path')
 const routes = require("./routes");
 const PORT = process.env.PORT || 3002
@@ -9,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
+    app.use(helmet());
     app.use(express.static("frontend/build"));
 }
 app.use(routes)

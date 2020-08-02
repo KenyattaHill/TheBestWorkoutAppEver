@@ -24,7 +24,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/exerciseApp", {
     console.log('Issue connecting to DB', error);
     return;
     }
-    console.log('SEED', process.env.SEED)
   if (process.env.SEED === 'store') {
     await Seed.store();
   }

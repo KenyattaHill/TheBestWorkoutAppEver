@@ -50,7 +50,7 @@ async function getDetail(request, response) {
     .populate('musclesSecondary')
     .populate('category').catch(error => response.status(500).send({ message: error }));
 
-  if (!exercise) return response.status(401).send({
+  if (!exercise) return response.status(404).send({
     message: 'Exercise not found!'
   });
 

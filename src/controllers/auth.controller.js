@@ -16,7 +16,6 @@ async function signUp(request, response) {
     response.status(500).send({
       message: err,
     });
-    return;
   });
   response.send({
     message: "user was registered correctly",
@@ -30,7 +29,6 @@ async function signIn(request, response) {
     response.status(500).send({
       message: err,
     });
-    return;
   });
   if (!user) {
     return response.status(401).send({

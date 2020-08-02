@@ -19,6 +19,8 @@ function App() {
     setUser(null);
     authService.logout(history);
   };
+  const AuthWorkouts = authGuard(Workouts);
+  const AuthExercises = authGuard(Exercises);
   return (
     <>
       <Navbar user={user} logout={logout} />
@@ -29,8 +31,12 @@ function App() {
         <Route exact path='/signIn'>
           <SignIn setUser={setUser} />
         </Route>
-        <Route exact path='/workouts' render={authGuard(Workouts)} />
-        <Route exact path='/exercises' render={authGuard(Exercises)} />
+        <Route exact path='/workouts'>
+          <AuthWorkouts />
+        </Route>
+        <Route exact path='/exercises'>
+          <AuthExercises />
+        </Route>
         <Route exact path='/' render={Home} />
         <Route path='*' render={NotFound} />
       </Switch>

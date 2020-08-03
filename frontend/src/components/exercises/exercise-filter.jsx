@@ -5,16 +5,19 @@ import exercisesService from '../../services/exercises.service';
 import * as _ from 'lodash';
 
 export default function ExerciseFilter({ setFilter, defaultValues }) {
+  const [loading, setLoading] = useState(false)
   const [categories, setCategories] = useState([]);
   const [equipment, setEquipment] = useState([]);
   const [muscles, setMuscles] = useState([]);
   const { register, handleSubmit, setValue } = useForm({ defaultValues });
 
   const getOptions = async () => {
-    const allOption = [{key: 0, value: 0, text: 'All'}]
+    const allOption = [{ key: 0, value: 0, text: 'All' }]
+    setLoading(true)
     setCategories(allOption.concat(await exercisesService.categories()));
     setEquipment(allOption.concat(await exercisesService.equipment()));
     setMuscles(allOption.concat(await exercisesService.muscles()));
+    setLoading(false)
   };
 
   useEffect(() => {
@@ -58,6 +61,7 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
             name='category'
             options={categories}
             onChange={OnChange}
+            loading={loading}
           />
         </Form.Field>
         <Form.Field>
@@ -67,6 +71,7 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
             name='equipment'
             options={equipment}
             onChange={OnChange}
+            loading={loading}
           />
         </Form.Field>
         <Form.Field>
@@ -76,6 +81,7 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
             name='muscle'
             options={muscles}
             onChange={OnChange}
+            loading={loading}
           />
         </Form.Field>
       </Form.Group>

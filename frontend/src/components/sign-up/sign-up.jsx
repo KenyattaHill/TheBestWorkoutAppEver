@@ -26,7 +26,7 @@ export default function SignUp() {
       });
   };
   return (
-    <div className='app-form'>
+    <div className='auth-form'>
       <h1>Sign Up</h1>
       <Form onSubmit={handleSubmit(OnSubmit)} loading={loading}>
         <Form.Field>

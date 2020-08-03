@@ -7,7 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.app-form {
-  width: 500px;
-  margin: 25px auto;
+.app {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
 }
+
+.auth-form {
+  width: 500px;
+}
+

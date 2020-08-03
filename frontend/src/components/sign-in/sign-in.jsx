@@ -26,7 +26,7 @@ export default function SignIn({ setUser }) {
       });
   };
   return (
-    <div className='app-form'>
+    <div className='auth-form'>
       <h1>Sign In</h1>
       <Form onSubmit={handleSubmit(OnSubmit)} loading={loading}>
         <Form.Field>

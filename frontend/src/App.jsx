@@ -14,32 +14,37 @@ import NotFound from './components/not-found/not-found';
 
 function App() {
   const [user, setUser] = useState(authService.getCurrentUser());
+
   const history = useHistory();
   const logout = () => {
     setUser(null);
     authService.logout(history);
   };
+
   const AuthWorkouts = authGuard(Workouts);
   const AuthExercises = authGuard(Exercises);
+
   return (
     <>
       <Navbar user={user} logout={logout} />
-      <Switch>
-        <Route exact path='/signUp'>
-          <SignUp />
-        </Route>
-        <Route exact path='/signIn'>
-          <SignIn setUser={setUser} />
-        </Route>
-        <Route exact path='/workouts'>
-          <AuthWorkouts />
-        </Route>
-        <Route exact path='/exercises'>
-          <AuthExercises />
-        </Route>
-        <Route exact path='/' render={Home} />
-        <Route path='*' render={NotFound} />
-      </Switch>
+      <div className="app">
+        <Switch>
+          <Route exact path='/signUp'>
+            <SignUp />
+          </Route>
+          <Route exact path='/signIn'>
+            <SignIn setUser={setUser} />
+          </Route>
+          <Route exact path='/workouts'>
+            <AuthWorkouts />
+          </Route>
+          <Route exact path='/exercises'>
+            <AuthExercises />
+          </Route>
+          <Route exact path='/' render={Home} />
+          <Route path='*' render={NotFound} />
+        </Switch>
+      </div>
       <ToastContainer newestOnTop={true} />
     </>
   );

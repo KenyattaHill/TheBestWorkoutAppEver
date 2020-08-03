@@ -1,44 +1,39 @@
 import axios from 'axios';
-// Endpoints
-//exercise
-//exerciseinfo
-//exercisecategory
-//exerciseimage
-//muscle
-//equipment
-const BASE_URL = `https://wger.de/api/v2/`;
+import authService from './auth.service';
 
-const workoutManager = (endpoint, params = {}) => axios.get(BASE_URL + endpoint, {params})
+const BASE_URL = `/api/`;
 
-function getByFilter(category = '', equipment = '', muscles = '') {
+const workoutManager = (endpoint, params = {}) => axios.get(BASE_URL + endpoint, {
+  params, headers: {
+    'x-access-token': authService.getCurrentUser()?.accessToken || 'No Token'
+  }
+}).then(response => response.data)
 
-  const params = new URLSearchParams({
-    status: '2',
-    format: 'json',
-    language: '2'
-  });
-  if(category) params.append('category', category)
-  if(equipment) params.append('equipment', equipment)
-  if(muscles) params.append('muscles', muscles)
-  return workoutManager('exercise', params)
-    .then(response => response.data)
+function getByFilter({searchName, category, equipment, muscle}) {
 
+  const params = new URLSearchParams();
+  if (searchName) params.append('text', searchName)
+  if (category) params.append('category', category)
+  if (equipment) params.append('equipment', equipment)
+  if (muscle) params.append('muscle', muscle)
+
+  return workoutManager('exercise', params).then(({exercises}) => exercises)
 }
 
 function getById(id) {
-  
+  return workoutManager('exercise/' + id)
 }
 
 function categories() {
-  
+  return workoutManager('filter/category').then(response => response.categories.map(({id, name})=>({key: id, value: id, text: name })))
 }
 
 function muscles() {
-  
+  return workoutManager('filter/muscle').then(response => response.muscles.map(({id, name})=>({key: id, value: id, text: name})))
 }
 
 function equipment() {
-  
+  return workoutManager('filter/equipment').then(response => response.equipment.map(({ id, name }) => ({ key: id, value: id, text: name })))
 }
 
 export default {

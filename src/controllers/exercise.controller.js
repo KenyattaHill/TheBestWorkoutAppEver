@@ -1,7 +1,7 @@
 const { Exercise, Comment, Image } = require('../models');
 
 async function getAllByFilter(request, response) {
-  const { category, equipment, muscles } = request.query
+  const { category, equipment, muscle, text } = request.query
 
   const query = {}
   if (category) {
@@ -10,10 +10,13 @@ async function getAllByFilter(request, response) {
   if (equipment) {
     query.equipment = equipment
   }
-  if (muscles) {
-    query.muscles = muscles
+  if (muscle) {
+    query.muscles = muscle
   }
-
+  if (text) {
+    query.name = { $regex: text, $options: 'i' }
+  }
+console.log( 'query ', query)
   const exercises = await Exercise.find(query)
     .populate('equipment')
     .populate('muscles')
@@ -72,8 +75,4 @@ async function getDetail(request, response) {
   response.json({ exercise: mappedExercise })
 }
 
-async function searchAllByFilter(request, response) {
-  response.send({ message: 'Not Implemented Yet' })
-}
-
-module.exports = { getAllByFilter, getDetail, searchAllByFilter }
+module.exports = { getAllByFilter, getDetail }

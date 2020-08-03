@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 async function signUp(request, response) {
   const { firstName, lastName, email, userName, password } = request.body;
-  // console.log(request.body)
+
   const user = new User({
     firstName,
     lastName,
@@ -42,7 +42,7 @@ async function signIn(request, response) {
       accessToken: null,
       message: "invalid user or password",
     });
-  }     
+  }
   const secret = process.env.TOKEN_SECRET || "this is a secret phrase"
   const token = jwt.sign(
     {
@@ -62,4 +62,4 @@ async function signIn(request, response) {
     accessToken: token,
   });
 }
-module.exports = {signIn, signUp}
+module.exports = { signIn, signUp }

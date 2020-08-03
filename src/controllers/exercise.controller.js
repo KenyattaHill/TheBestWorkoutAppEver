@@ -57,14 +57,14 @@ async function getDetail(request, response) {
     message: 'Exercise not found!'
   });
 
-  const image = await Image.findOne({ exercise: exercise.id })
+  const image = await Image.find({ exercise: exercise.id })
   const comment = await Comment.findOne({ exercise: exercise.id })
 
   const mappedExercise = {
     id: exercise._id,
     name: exercise.name,
     description: exercise.description,
-    image: image ? image.image : 'https://wger.de/static/images/icons/image-placeholder.svg',
+    images: image.map(({ image }) => image),
     comment: comment ? comment.comment : '',
     category: exercise.category.name,
     equipment: exercise.equipment.map(({ _id, name }) => ({ id: _id, name })),

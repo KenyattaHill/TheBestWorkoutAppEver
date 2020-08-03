@@ -4,7 +4,7 @@ async function getCategories(request, response) {
   const categories = await Category.find({}).catch(error =>
     response.status(500).send({
       message: error
-  }));
+    }));
 
   if (categories.length === 0) {
     return response.status(404).send({
@@ -13,7 +13,7 @@ async function getCategories(request, response) {
   }
 
   return response.status(200).json({
-    categories: categories.map(({ _id, name}) => ({id: _id, name}))
+    categories: categories.map(({ _id, name }) => ({ id: _id, name }))
   })
 }
 
@@ -30,7 +30,7 @@ async function getMuscles(request, response) {
   }
 
   return response.status(200).json({
-    muscles: muscles.map(({_id, name, isFront})=>({id: _id, name , isFront}))
+    muscles: muscles.map(({ _id, name, isFront }) => ({ id: _id, name, isFront }))
   })
 }
 
@@ -47,7 +47,7 @@ async function getEquipment(request, response) {
   }
 
   return response.status(200).json({
-    equipment: equipment.map(({_id, name})=>({ id: _id, name}))
+    equipment: equipment.map(({ _id, name }) => ({ id: _id, name }))
   })
 }
 

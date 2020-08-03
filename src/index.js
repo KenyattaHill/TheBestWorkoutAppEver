@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/exerciseApp", {
   if (error) {
     console.log('Issue connecting to DB', error);
     return;
-    }
+  }
   if (process.env.SEED === 'store') {
     await Seed.store();
   }

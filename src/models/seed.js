@@ -56,9 +56,7 @@ const store = async () => {
     const newImages = wImages.map(({ id, image, exercise }) => ({ _id: id, image, exercise }))
     await Image.insertMany(newImages)
     console.log('Images Inserted');
-
   }
-
 }
 
 const remove = async () => {

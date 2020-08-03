@@ -9,7 +9,7 @@ const workoutManager = (endpoint, params = {}) => axios.get(BASE_URL + endpoint,
   }
 }).then(response => response.data)
 
-function getByFilter({searchName, category, equipment, muscle}) {
+function getByFilter({ searchName, category, equipment, muscle }) {
 
   const params = new URLSearchParams();
   if (searchName) params.append('text', searchName)
@@ -17,7 +17,7 @@ function getByFilter({searchName, category, equipment, muscle}) {
   if (equipment) params.append('equipment', equipment)
   if (muscle) params.append('muscle', muscle)
 
-  return workoutManager('exercise', params).then(({exercises}) => exercises)
+  return workoutManager('exercise', params).then(({ exercises }) => exercises)
 }
 
 function getById(id) {
@@ -25,11 +25,11 @@ function getById(id) {
 }
 
 function categories() {
-  return workoutManager('filter/category').then(response => response.categories.map(({id, name})=>({key: id, value: id, text: name })))
+  return workoutManager('filter/category').then(response => response.categories.map(({ id, name }) => ({ key: id, value: id, text: name })))
 }
 
 function muscles() {
-  return workoutManager('filter/muscle').then(response => response.muscles.map(({id, name})=>({key: id, value: id, text: name})))
+  return workoutManager('filter/muscle').then(response => response.muscles.map(({ id, name }) => ({ key: id, value: id, text: name })))
 }
 
 function equipment() {

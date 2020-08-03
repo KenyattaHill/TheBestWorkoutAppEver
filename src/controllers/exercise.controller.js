@@ -16,7 +16,7 @@ async function getAllByFilter(request, response) {
   if (text) {
     query.name = { $regex: text, $options: 'i' }
   }
-console.log( 'query ', query)
+
   const exercises = await Exercise.find(query)
     .populate('equipment')
     .populate('muscles')

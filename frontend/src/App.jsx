@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <Navbar user={user} logout={logout} />
-      <div className="app">
+      <div className='app'>
         <Switch>
           <Route exact path='/signUp'>
             <SignUp />

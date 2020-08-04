@@ -11,25 +11,24 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
   const [muscles, setMuscles] = useState([]);
   const { register, handleSubmit, setValue } = useForm({ defaultValues });
 
-  const getOptions = async () => {
-    const allOption = [{ key: 0, value: 0, text: 'All' }];
-    setLoading(true);
-    setCategories(allOption.concat(await exercisesService.categories()));
-    setEquipment(allOption.concat(await exercisesService.equipment()));
-    setMuscles(allOption.concat(await exercisesService.muscles()));
-    setLoading(false);
-  };
-
   useEffect(() => {
     register({ name: 'searchName' });
     register({ name: 'category' });
     register({ name: 'equipment' });
     register({ name: 'muscle' });
+    const getOptions = async () => {
+      const allOption = [{ key: 0, value: 0, text: 'All' }];
+      setLoading(true);
+      setCategories(allOption.concat(await exercisesService.categories()));
+      setEquipment(allOption.concat(await exercisesService.equipment()));
+      setMuscles(allOption.concat(await exercisesService.muscles()));
+      setLoading(false);
+    };
     getOptions();
   }, [register]);
 
   const OnSubmit = filter => {
-    setFilter(preFilter => (_.isEqual(preFilter, filter) ? preFilter : filter));
+    setFilter(prevFilter => (_.isEqual(prevFilter, filter) ? prevFilter : filter));
   };
 
   const submit = handleSubmit(OnSubmit);

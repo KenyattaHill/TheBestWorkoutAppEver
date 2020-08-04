@@ -57,8 +57,8 @@ async function getDetail(request, response) {
     message: 'Exercise not found!'
   });
 
-  const image = await Image.find({ exercise: exercise.id })
-  const comment = await Comment.findOne({ exercise: exercise.id })
+  const image = await Image.find({ exercise: exercise._id })
+  const comment = await Comment.findOne({ exercise: exercise._id })
 
   const mappedExercise = {
     id: exercise._id,

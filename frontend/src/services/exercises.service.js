@@ -21,7 +21,7 @@ function getByFilter({ searchName, category, equipment, muscle }) {
 }
 
 function getById(id) {
-  return workoutManager('exercise/' + id)
+  return workoutManager('exercise/' + id).then(({exercise}) => exercise)
 }
 
 function categories() {

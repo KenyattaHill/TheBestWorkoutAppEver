@@ -11,11 +11,12 @@ import authGuard from './services/auth.guard';
 import Workouts from './components/workouts/workouts';
 import Exercises from './components/exercises/exercises';
 import NotFound from './components/not-found/not-found';
+import ExerciseDetail from './components/exercises/exercise-detail'
 
 function App() {
   const [user, setUser] = useState(authService.getCurrentUser());
-
   const history = useHistory();
+
   const logout = () => {
     setUser(null);
     authService.logout(history);
@@ -23,6 +24,7 @@ function App() {
 
   const AuthWorkouts = authGuard(Workouts);
   const AuthExercises = authGuard(Exercises);
+  const AuthExerciseDetail = authGuard(ExerciseDetail);
 
   return (
     <>
@@ -41,7 +43,12 @@ function App() {
           <Route exact path='/exercises'>
             <AuthExercises />
           </Route>
-          <Route exact path='/' render={Home} />
+          <Route exact path='/exercises/:id'>
+            <AuthExerciseDetail />
+          </Route>
+          <Route exact path='/'>
+            <Home />
+          </Route>
           <Route path='*' render={NotFound} />
         </Switch>
       </div>

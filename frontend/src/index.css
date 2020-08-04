@@ -17,3 +17,13 @@ body {
   width: 500px;
 }
 
+.ExerciseDetail-images{
+  display: flex;
+  margin-top: 25px;
+  justify-content: space-evenly;
+}
+
+.ExerciseDetail-breadcrumb{
+  margin: 25px 0;
+}
+

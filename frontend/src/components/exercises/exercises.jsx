@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import exercisesService from '../../services/exercises.service';
 import ExerciseFilter from './exercise-filter';
-import { useEffect } from 'react';
 import ExerciseList from './exercise-list';
 
 export default function Exercises() {

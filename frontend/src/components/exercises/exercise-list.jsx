@@ -9,23 +9,23 @@ export default function ExerciseList({ loading, exercises }) {
     history.push('/exercises/' + id)
   };
 
-  const selectExercise = (id, name) => (e) => {
-    e.stopPropagation();
-    alert(`${name} will be selected: ${id}`)
-  }
+  // const selectExercise = (id, name) => (e) => {
+  //   e.stopPropagation();
+  //   alert(`${name} will be selected: ${id}`)
+  // }
   const listItems = exercises.map(({ id, name, image, equipment }) => {
     return (
       <List.Item key={id} id={id} onClick={onItemClick}>
         <Image src={image} avatar />
-        <List.Content verticalAlign='middle'>
+        <List.Content>
           <List.Header>{name}</List.Header>
           <List.Description>
             {equipment.map(({ name }) => name).join(', ')}
           </List.Description>
         </List.Content>
-        <List.Content floated='right' verticalAlign='bottom'>
+        {/* <List.Content floated='right'>
           <Button onClick={selectExercise(id, name)}>Select</Button>
-        </List.Content>
+        </List.Content> */}
       </List.Item>
     );
   });
@@ -33,7 +33,7 @@ export default function ExerciseList({ loading, exercises }) {
     <Loader active />
   ) : exercises.length > 0 ? (
     <>
-      <List size='small' selection>
+      <List size='huge' selection>
         {listItems}
       </List>
     </>

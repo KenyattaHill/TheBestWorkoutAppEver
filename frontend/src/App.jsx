@@ -9,9 +9,10 @@ import SignUp from './components/sign-up/sign-up';
 import authService from './services/auth.service';
 import authGuard from './services/auth.guard';
 import Workouts from './components/workouts/workouts';
+import AddWorkout from './components/workouts/add-workout';
 import Exercises from './components/exercises/exercises';
 import NotFound from './components/not-found/not-found';
-import ExerciseDetail from './components/exercises/exercise-detail'
+import ExerciseDetail from './components/exercises/exercise-detail';
 
 function App() {
   const [user, setUser] = useState(authService.getCurrentUser());
@@ -23,11 +24,18 @@ function App() {
   };
 
   const AuthWorkouts = authGuard(Workouts);
+  const AuthAddWorkout = authGuard(AddWorkout);
   const AuthExercises = authGuard(Exercises);
   const AuthExerciseDetail = authGuard(ExerciseDetail);
 
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: `url('/assets/fitness.jpg')`,
+        backgroundSize: 'cover',
+        overflow: 'scroll',
+        height: '100vh',
+      }}>
       <Navbar user={user} logout={logout} />
       <div className='app'>
         <Switch>
@@ -39,6 +47,9 @@ function App() {
           </Route>
           <Route exact path='/workouts'>
             <AuthWorkouts />
+          </Route>
+          <Route exact path='/workout/new'>
+            <AuthAddWorkout />
           </Route>
           <Route exact path='/exercises'>
             <AuthExercises />
@@ -53,7 +64,7 @@ function App() {
         </Switch>
       </div>
       <ToastContainer newestOnTop={true} />
-    </>
+    </div>
   );
 }
 

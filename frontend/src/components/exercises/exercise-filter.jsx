@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
 import exercisesService from '../../services/exercises.service';
-import * as _ from 'lodash';
+import { isEqual } from 'lodash';
 
 export default function ExerciseFilter({ setFilter, defaultValues }) {
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,9 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
   }, [register]);
 
   const OnSubmit = filter => {
-    setFilter(prevFilter => (_.isEqual(prevFilter, filter) ? prevFilter : filter));
+    setFilter(prevFilter =>
+      isEqual(prevFilter, filter) ? prevFilter : filter
+    );
   };
 
   const submit = handleSubmit(OnSubmit);

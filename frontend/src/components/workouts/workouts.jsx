@@ -1,5 +1,10 @@
 import React from 'react';
+import {Segment} from 'semantic-ui-react'
 
 export default function Workouts() {
-  return <h1>Workouts Component</h1>;
+  return (
+    <Segment className='workouts'>
+      <h1>Workouts Component</h1>
+    </Segment>
+  );
 }

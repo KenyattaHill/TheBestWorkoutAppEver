@@ -9,21 +9,28 @@ body {
 
 .app {
   display: flex;
-  margin-top: 50px;
+  margin-top: 75px;
   justify-content: center;
+}
+.segment.home,
+.segment.workouts,
+.segment.addWorkout {
+  width: 900px;
+}
+.segment {
+  max-width: 900px;
 }
 
 .auth-form {
   width: 500px;
 }
 
-.ExerciseDetail-images{
+.ExerciseDetail-images {
   display: flex;
   margin-top: 25px;
   justify-content: space-evenly;
 }
 
-.ExerciseDetail-breadcrumb{
+.ExerciseDetail-breadcrumb {
   margin: 25px 0;
 }
-

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Message } from 'semantic-ui-react';
+import { Form, Message, Segment } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
 import authService from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
@@ -26,7 +26,7 @@ export default function SignUp() {
       });
   };
   return (
-    <div className='auth-form'>
+    <Segment className='auth-form'>
       <h1>Sign Up</h1>
       <Form onSubmit={handleSubmit(OnSubmit)} loading={loading}>
         <Form.Field>
@@ -98,6 +98,6 @@ export default function SignUp() {
         </Form.Field>
         <Form.Button>Sign Up</Form.Button>
       </Form>
-    </div>
+    </Segment>
   );
 }

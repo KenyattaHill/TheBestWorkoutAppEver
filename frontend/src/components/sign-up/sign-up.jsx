@@ -96,7 +96,7 @@ export default function SignUp() {
             <Message negative>{errors.password.message}</Message>
           )}
         </Form.Field>
-        <Form.Button color='primary'>Sign Up</Form.Button>
+        <Form.Button primary>Sign Up</Form.Button>
       </Form>
     </Segment>
   );

@@ -12,7 +12,7 @@ export default function Navbar({ user, logout }) {
           <Menu.Item exact name='exercises' as={NavLink} to='/exercises' />
           <Menu.Item exact name='workouts' as={NavLink} to='/workouts' />
           <Menu.Item>
-            <Button color='primary' as={NavLink} to='/workout/new'>
+            <Button primary as={NavLink} to='/workout/new'>
               Add Workout
             </Button>
           </Menu.Item>

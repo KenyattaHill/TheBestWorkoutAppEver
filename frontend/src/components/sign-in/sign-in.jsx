@@ -58,7 +58,7 @@ export default function SignIn({ setUser }) {
             <Message negative>{errors.password.message}</Message>
           )}
         </Form.Field>
-        <Form.Button color='primary'>Sign In</Form.Button>
+        <Form.Button primary>Sign In</Form.Button>
       </Form>
     </Segment>
   );

@@ -5,6 +5,7 @@ const getAll = async (request, response) => {
   const workouts = await Workout.find({ userId }).catch(error => response.status(500).send({ message: error }));
   response.status(200).json(workouts)
 }
+
 const getById = async (request, response) => {
   const { id } = request.params;
 
@@ -16,6 +17,7 @@ const getById = async (request, response) => {
 
   response.status(200).json(workout);
 }
+
 const create = async (request, response) => {
   const { userId } = request;
   const { name } = request.body;
@@ -24,6 +26,7 @@ const create = async (request, response) => {
 
   response.status(200).json(newWorkout)
 }
+
 const update = async (request, response) => {
   const { id } = request.params;
   const { name, exercises } = request.body;
@@ -40,6 +43,7 @@ const update = async (request, response) => {
   }
   response.status(200).json(workout)
 }
+
 const remove = async (request, response) => {
   const { id } = request.params;
   const workout = await Workout.findByIdAndDelete(id).catch(error => response.status(500).send({ message: error }));

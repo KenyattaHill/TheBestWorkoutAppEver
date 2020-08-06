@@ -34,7 +34,7 @@ export default function Home() {
       </p>
       <h2>Tools</h2>
       <p>
-        We have wide variety of exercises for every body part for you to build to perfect workout.
+        We have wide variety of exercises for every body part for you to build the perfect workout.
       </p>
 
       <h2>Inspiration</h2>

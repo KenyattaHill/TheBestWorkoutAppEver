@@ -5,5 +5,6 @@ module.exports = {
   Muscle: require('./muscle.model'),
   Equipment: require('./equipment.model'),
   Comment: require('./comment.model'),
-  Image: require('./image.model')
+  Image: require('./image.model'),
+  Workout: require('./workout.model')
 }

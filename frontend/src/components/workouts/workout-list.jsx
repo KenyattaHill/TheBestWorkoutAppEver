@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { List, Message } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 
 
@@ -21,7 +21,7 @@ export default function WorkoutList({ workouts }) {
 
   return (
     <List size='huge' selection>
-      {listItems}
+      {listItems.length > 0 ? listItems : <Message info>No Workouts Saved</Message>}
     </List>
   )
 

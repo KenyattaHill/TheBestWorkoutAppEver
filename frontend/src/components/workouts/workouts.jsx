@@ -16,7 +16,7 @@ export default function Workouts() {
     }).catch((error) => {
       console.log(error.response.data)
       setLoading(false)
-      messageService.error('Could not load workouts')
+      messageService.error(error?.response?.data?.message || 'Could not load workouts')
     })
   }, [])
 

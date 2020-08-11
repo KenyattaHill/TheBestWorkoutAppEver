@@ -12,7 +12,7 @@ import {
   Divider,
 } from 'semantic-ui-react';
 import WorkoutSets from './workout-sets';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import workoutService from '../../services/workouts.service';
 import exerciseService from '../../services/exercises.service';
 import messageService from '../../services/message.service';
@@ -164,7 +164,7 @@ export default function WorkoutDetail() {
               ref={register()}
               defaultValue={field.comment}
             />
-            <Header size='large'>
+            <Header as={Link} to={`/exercises/${field.id}`}  size='large'>
               {field.image && <Image avatar src={field.image} />}
               {field.name}
             </Header>

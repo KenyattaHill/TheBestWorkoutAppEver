@@ -16,15 +16,19 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
     register({ name: 'category' });
     register({ name: 'equipment' });
     register({ name: 'muscle' });
-    const getOptions = async () => {
-      const allOption = [{ key: 0, value: 0, text: 'All' }];
-      setLoading(true);
-      setCategories(allOption.concat(await exercisesService.categories()));
-      setEquipment(allOption.concat(await exercisesService.equipment()));
-      setMuscles(allOption.concat(await exercisesService.muscles()));
-      setLoading(false);
-    };
-    getOptions();
+    const allOption = [{ key: 0, value: 0, text: 'All' }];
+    setLoading(true);
+    Promise.all([
+      exercisesService.categories(),
+      exercisesService.equipment(),
+      exercisesService.muscles(),
+    ])
+      .then(([categories, equipment, muscles]) => {
+        setCategories(allOption.concat(categories));
+        setEquipment(allOption.concat(equipment));
+        setMuscles(allOption.concat(muscles));
+      })
+      .finally(() => setLoading(false));
   }, [register]);
 
   const OnSubmit = filter => {

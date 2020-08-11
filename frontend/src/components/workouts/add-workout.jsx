@@ -13,8 +13,8 @@ export default function AddWorkout() {
       messageService.success('Workout created')
       history.push('/workouts/' + _id)
     }).catch((error) => {
-      console.log(error.response.data)
-      messageService.error('Workout cannot be added at this time..')
+      console.log(error.response.data.message)
+      messageService.error(error?.response?.data?.message || 'Something went wrong!');
     })
   }
   return (

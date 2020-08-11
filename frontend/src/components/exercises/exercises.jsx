@@ -3,6 +3,7 @@ import exercisesService from '../../services/exercises.service';
 import ExerciseFilter from './exercise-filter';
 import ExerciseList from './exercise-list';
 import { Segment } from 'semantic-ui-react';
+import messageService from '../../services/message.service';
 
 export default function Exercises() {
   const [filter, setFilter] = useState({});
@@ -16,12 +17,19 @@ export default function Exercises() {
   };
 
   useEffect(() => {
-    const getExercises = async filter => {
-      setLoading(true);
-      setExercises(await exercisesService.getByFilter(filter));
-      setLoading(false);
-    };
-    getExercises(filter);
+    setLoading(true);
+    exercisesService
+      .getByFilter(filter)
+      .then(exercises => {
+        setLoading(false);
+        setExercises(exercises);
+      })
+      .catch(error => {
+        setLoading(false);
+        messageService.error(
+          error?.response?.data?.message || 'Something went wrong'
+        );
+      });
   }, [filter]);
 
   return (

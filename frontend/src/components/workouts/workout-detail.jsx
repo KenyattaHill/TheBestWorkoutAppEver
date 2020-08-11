@@ -118,7 +118,7 @@ export default function WorkoutDetail() {
           </Button>
         </div>
       </div>
-      <br/>
+      <br />
       <Search
         placeholder='Add Exercise'
         loading={loading.search}
@@ -128,7 +128,7 @@ export default function WorkoutDetail() {
         resultRenderer={resultRenderer}
         value={query}
       />
-      <br/>
+      <br />
       <Divider />
       <Form onSubmit={handleSubmit(OnSubmit)}>
         {fields.map((field, index) => (
@@ -171,6 +171,7 @@ export default function WorkoutDetail() {
             <WorkoutSets nestIndex={index} {...{ control, register, errors }} />
           </Form.Field>
         ))}
+        <Divider />
         <Form.Button floated='right' primary>
           Update
         </Form.Button>

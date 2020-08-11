@@ -14,7 +14,7 @@ body {
 }
 .segment.home,
 .segment.workouts,
-.segment.addWorkout {
+.segment.addWorkout, .segment.workout-detail {
   width: 900px;
 }
 .segment {

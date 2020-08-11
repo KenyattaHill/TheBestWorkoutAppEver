@@ -10,6 +10,7 @@ function verifyToken(request, response, next) {
     }
     jwt.verify(token, secret, (err, decoded) => {
         if (err) {
+            console.log(err)
             if (err.message === 'jwt expired') {
                 return response.status(400).send({
                     message: 'Authorization expired, please sign in.'

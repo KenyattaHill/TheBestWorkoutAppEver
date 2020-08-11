@@ -13,6 +13,7 @@ import AddWorkout from './components/workouts/add-workout';
 import Exercises from './components/exercises/exercises';
 import NotFound from './components/not-found/not-found';
 import ExerciseDetail from './components/exercises/exercise-detail';
+import WorkoutDetail from './components/workouts/workout-detail';
 
 function App() {
   const [user, setUser] = useState(authService.getCurrentUser());
@@ -24,6 +25,7 @@ function App() {
   };
 
   const AuthWorkouts = authGuard(Workouts);
+  const AuthWorkoutDetail = authGuard(WorkoutDetail);
   const AuthAddWorkout = authGuard(AddWorkout);
   const AuthExercises = authGuard(Exercises);
   const AuthExerciseDetail = authGuard(ExerciseDetail);
@@ -48,8 +50,11 @@ function App() {
           <Route exact path='/workouts'>
             <AuthWorkouts />
           </Route>
-          <Route exact path='/workout/new'>
+          <Route exact path='/workouts/new'>
             <AuthAddWorkout />
+          </Route>
+          <Route exact path='/workouts/:id'>
+            <AuthWorkoutDetail />
           </Route>
           <Route exact path='/exercises'>
             <AuthExercises />

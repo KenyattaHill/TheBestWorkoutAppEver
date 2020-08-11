@@ -31,13 +31,17 @@ const update = async (request, response) => {
   const { id } = request.params;
   const { name, exercises } = request.body;
 
-  const query = { name };
+  const query = {};
+  
+  if (name) {
+    query.name = name
+  }
 
   if (exercises && exercises.length) {
     query.exercises = exercises;
   }
 
-  const workout = await Workout.findByIdAndUpdate(id, query).catch(error => response.status(500).send({ message: error }));
+  const workout = await Workout.findByIdAndUpdate(id, query, {new: true}).catch(error => response.status(500).send({ message: error }));
   if (!workout) {
     return response.status(404).send({ message: 'Workout not found!' })
   }

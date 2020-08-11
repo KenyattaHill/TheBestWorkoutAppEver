@@ -14,11 +14,13 @@ if (process.env.NODE_ENV === "production") {
   app.use(helmet());
   app.use(express.static("frontend/build"));
 }
+
 app.use(routes)
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/exerciseApp", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false
 }, async error => {
   if (error) {
     console.log('Issue connecting to DB', error);

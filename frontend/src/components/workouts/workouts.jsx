@@ -1,10 +1,29 @@
-import React from 'react';
-import {Segment} from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react';
+import { Segment } from 'semantic-ui-react';
+import workoutsService from '../../services/workouts.service';
+import messageService from '../../services/message.service';
+import WorkoutList from './workout-list';
 
 export default function Workouts() {
+  const [workouts, setWorkouts] = useState([]);
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    workoutsService.getAll().then(workouts => {
+      setLoading(false)
+      setWorkouts(workouts)
+    }).catch((error) => {
+      console.log(error.response.data)
+      setLoading(false)
+      messageService.error('Could not load workouts')
+    })
+  }, [])
+
   return (
-    <Segment className='workouts'>
-      <h1>Workouts Component</h1>
+    <Segment loading={loading} className='workouts'>
+      <h1>Workouts</h1>
+      <WorkoutList workouts={workouts} />
     </Segment>
   );
 }

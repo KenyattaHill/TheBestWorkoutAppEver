@@ -9,6 +9,7 @@ import {
   Header,
   Button,
   Confirm,
+  Divider,
 } from 'semantic-ui-react';
 import WorkoutSets from './workout-sets';
 import { useParams, useHistory } from 'react-router-dom';
@@ -117,6 +118,7 @@ export default function WorkoutDetail() {
           </Button>
         </div>
       </div>
+      <br/>
       <Search
         placeholder='Add Exercise'
         loading={loading.search}
@@ -126,6 +128,8 @@ export default function WorkoutDetail() {
         resultRenderer={resultRenderer}
         value={query}
       />
+      <br/>
+      <Divider />
       <Form onSubmit={handleSubmit(OnSubmit)}>
         {fields.map((field, index) => (
           <Form.Field key={field.key}>

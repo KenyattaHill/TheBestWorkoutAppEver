@@ -7,6 +7,8 @@ import {
   Label,
   Image,
   Header,
+  Button,
+  Confirm,
 } from 'semantic-ui-react';
 import WorkoutSets from './workout-sets';
 import { useParams, useHistory } from 'react-router-dom';
@@ -16,10 +18,10 @@ import messageService from '../../services/message.service';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { debounce } from 'lodash';
 
-
 export default function WorkoutDetail() {
   const [workout, setWorkout] = useState({});
   const [loading, setLoading] = useState({ component: false, search: false });
+  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const { id } = useParams();
@@ -32,17 +34,18 @@ export default function WorkoutDetail() {
     keyName: 'key',
   });
 
-  const OnSubmit = ({exercises}) => {
-    console.log('submit ', exercises);
+  const OnSubmit = ({ exercises }) => {
     setLoading(prev => ({ ...prev, component: true }));
-    workoutService.update({ id, exercises }).then(updatedWorkout => {
-      setLoading(prev => ({ ...prev, component: false }));
-      messageService.success('Workout Updated!')
-    }).catch(error => {
-      setLoading(prev => ({ ...prev, component: false }));
-      messageService.error('Something went wrong!')
-    })
-
+    workoutService
+      .update({ id, exercises })
+      .then(updatedWorkout => {
+        setLoading(prev => ({ ...prev, component: false }));
+        messageService.success('Workout Updated!');
+      })
+      .catch(error => {
+        setLoading(prev => ({ ...prev, component: false }));
+        messageService.error('Something went wrong!');
+      });
   };
 
   useEffect(() => {
@@ -90,10 +93,30 @@ export default function WorkoutDetail() {
     });
   };
 
+  const triggerConfirm = () => {
+    setOpen(true);
+  };
+
+  const onConfirm = () => {
+    workoutService.remove(id).then(() => {
+      messageService.success('Workout removed!');
+      history.push('/workouts');
+    });
+  };
+  const closeConfirm = () => {
+    setOpen(false);
+  };
+
   return (
     <Segment padded className='workout-detail' loading={loading.component}>
-      <h1>{workout.name}</h1>
-
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Header size='huge'>{workout.name}</Header>
+        <div>
+          <Button size='small' circular onClick={triggerConfirm} primary icon>
+            <Icon name='trash' />
+          </Button>
+        </div>
+      </div>
       <Search
         placeholder='Add Exercise'
         loading={loading.search}
@@ -137,7 +160,7 @@ export default function WorkoutDetail() {
               ref={register()}
               defaultValue={field.comment}
             />
-            <Header size='big'>
+            <Header size='large'>
               {field.image && <Image avatar src={field.image} />}
               {field.name}
             </Header>
@@ -148,6 +171,13 @@ export default function WorkoutDetail() {
           Update
         </Form.Button>
       </Form>
+      <Confirm
+        content='Are you sure you want to delete this workout?'
+        open={open}
+        confirmButton='Delete'
+        onCancel={closeConfirm}
+        onConfirm={onConfirm}
+      />
     </Segment>
   );
 }

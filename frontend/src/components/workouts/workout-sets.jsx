@@ -6,6 +6,7 @@ import {
   Message,
 } from 'semantic-ui-react';
 import { useFieldArray, Controller } from 'react-hook-form';
+import { get } from 'lodash';
 
 
 export default function WorkoutSets({ nestIndex, control, register, errors }) {
@@ -34,7 +35,7 @@ export default function WorkoutSets({ nestIndex, control, register, errors }) {
               defaultValue={field.repetitions}
               rules={{ required: 'Repetitions are required!' }}
             />
-            {errors?.exercises?.[nestIndex]?.sets?.[index]?.repetitions && (
+            {get(errors, `exercises[${nestIndex}].sets[${index}].repetitions`) && (
               <Message negative>
                 {errors.exercises[nestIndex].sets[index].repetitions.message}
               </Message>

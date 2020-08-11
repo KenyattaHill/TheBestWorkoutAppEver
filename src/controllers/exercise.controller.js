@@ -59,7 +59,6 @@ async function getDetail(request, response) {
 
   const image = await Image.find({ exercise: exercise._id })
   const comment = await Comment.findOne({ exercise: exercise._id })
-  console.log(exercise)
   const mappedExercise = {
     id: exercise._id,
     name: exercise.name,

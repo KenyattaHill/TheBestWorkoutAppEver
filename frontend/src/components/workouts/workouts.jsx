@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Segment } from 'semantic-ui-react';
-import workoutsService from '../../services/workouts.service';
 import messageService from '../../services/message.service';
 import WorkoutList from './workout-list';
+import { useService } from '../../services/use-service';
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(false)
+  const { workoutService } = useService();
 
   useEffect(() => {
     setLoading(true)
-    workoutsService.getAll().then(workouts => {
+    workoutService.getAll().then(workouts => {
       setLoading(false)
       setWorkouts(workouts)
     }).catch((error) => {

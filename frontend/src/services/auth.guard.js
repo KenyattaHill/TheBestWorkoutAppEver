@@ -1,14 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import authService from './auth.service';
 import messageService from './message.service';
+import { useAuth } from './use-auth';
 
 export default function AuthGuard(Component) {
+  const {user} = useAuth()
   return props => {
-    const isAuthenticated = authService.getCurrentUser();
-    if (!isAuthenticated) {
+    if (!user) {
       messageService.error('You must be logged in ')
     }
-    return isAuthenticated ? <Component {...props} /> : <Redirect to='/signIn' />
+    return user ? <Component {...props} /> : <Redirect to='/signIn' />
   }
 }

@@ -13,11 +13,10 @@ import {
 } from 'semantic-ui-react';
 import WorkoutSets from './workout-sets';
 import { useParams, useHistory, Link } from 'react-router-dom';
-import workoutService from '../../services/workouts.service';
-import exerciseService from '../../services/exercises.service';
 import messageService from '../../services/message.service';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { debounce } from 'lodash';
+import { useService } from '../../services/use-service';
 
 export default function WorkoutDetail() {
   const [workout, setWorkout] = useState({});
@@ -25,6 +24,7 @@ export default function WorkoutDetail() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const { workoutService, exerciseService } = useService();
   const { id } = useParams();
   const history = useHistory();
 

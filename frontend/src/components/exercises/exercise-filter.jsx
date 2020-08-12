@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Form } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
-import exercisesService from '../../services/exercises.service';
 import { isEqual } from 'lodash';
+import { useService } from '../../services/use-service';
 
 export default function ExerciseFilter({ setFilter, defaultValues }) {
   const [loading, setLoading] = useState(false);
@@ -10,6 +10,7 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
   const [equipment, setEquipment] = useState([]);
   const [muscles, setMuscles] = useState([]);
   const { register, handleSubmit, setValue } = useForm({ defaultValues });
+  const { exerciseService } = useService();
 
   useEffect(() => {
     register({ name: 'searchName' });
@@ -19,9 +20,9 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
     const allOption = [{ key: 0, value: 0, text: 'All' }];
     setLoading(true);
     Promise.all([
-      exercisesService.categories(),
-      exercisesService.equipment(),
-      exercisesService.muscles(),
+      exerciseService.categories(),
+      exerciseService.equipment(),
+      exerciseService.muscles(),
     ])
       .then(([categories, equipment, muscles]) => {
         setCategories(allOption.concat(categories));
@@ -29,7 +30,7 @@ export default function ExerciseFilter({ setFilter, defaultValues }) {
         setMuscles(allOption.concat(muscles));
       })
       .finally(() => setLoading(false));
-  }, [register]);
+  }, [register, exerciseService]);
 
   const OnSubmit = filter => {
     setFilter(prevFilter =>

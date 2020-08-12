@@ -2,14 +2,15 @@ import React from 'react';
 import { Segment, Message, Form } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import workoutsService from '../../services/workouts.service';
 import messageService from '../../services/message.service';
+import { useService } from '../../services/use-service';
 
 export default function AddWorkout() {
   const { register, handleSubmit, errors } = useForm();
+  const { workoutService } = useService();
   const history = useHistory()
   const OnSubmit = data => {
-    workoutsService.create(data.workoutName).then(({_id}) => {
+    workoutService.create(data.workoutName).then(({_id}) => {
       messageService.success('Workout created')
       history.push('/workouts/' + _id)
     }).catch((error) => {

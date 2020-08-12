@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Form, Message, Segment } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
-import authService from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import messageService from '../../services/message.service';
+import { useAuth } from '../../services/use-auth';
 
 export default function SignUp() {
+  const {signUp} = useAuth()
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
 
   const OnSubmit = (data, e) => {
     setLoading(true);
-    authService
-      .signUp(data)
+    signUp(data)
       .then(response => {
         setLoading(false);
         messageService.success(response.data.message);

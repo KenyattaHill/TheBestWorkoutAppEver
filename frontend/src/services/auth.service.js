@@ -39,6 +39,12 @@ export const authHeader = () => {
   }
 }
 
+export const axiosClient = axios.create({
+  headers: {
+    'x-access-token': JSON.parse(localStorage.getItem(USER_KEY))?.accessToken
+  }
+})
+
 
 export default {
   signUp,
@@ -46,3 +52,4 @@ export default {
   logout,
   getCurrentUser
 }
+

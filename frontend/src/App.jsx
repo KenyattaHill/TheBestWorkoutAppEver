@@ -1,12 +1,11 @@
 import 'react-toastify/dist/ReactToastify.css';
-import React, { useState } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Navbar from './components/navbar/navbar';
 import Home from './components/home/home';
 import SignIn from './components/sign-in/sign-in';
 import SignUp from './components/sign-up/sign-up';
-import authService from './services/auth.service';
 import authGuard from './services/auth.guard';
 import Workouts from './components/workouts/workouts';
 import AddWorkout from './components/workouts/add-workout';
@@ -15,14 +14,8 @@ import NotFound from './components/not-found/not-found';
 import ExerciseDetail from './components/exercises/exercise-detail';
 import WorkoutDetail from './components/workouts/workout-detail';
 
-function App() {
-  const [user, setUser] = useState(authService.getCurrentUser());
-  const history = useHistory();
 
-  const logout = () => {
-    setUser(null);
-    authService.logout(history);
-  };
+function App() {
 
   const AuthWorkouts = authGuard(Workouts);
   const AuthWorkoutDetail = authGuard(WorkoutDetail);
@@ -38,14 +31,14 @@ function App() {
         overflow: 'scroll',
         height: '100vh',
       }}>
-      <Navbar user={user} logout={logout} />
+      <Navbar />
       <div className='app'>
         <Switch>
           <Route exact path='/signUp'>
             <SignUp />
           </Route>
           <Route exact path='/signIn'>
-            <SignIn setUser={setUser} />
+            <SignIn />
           </Route>
           <Route exact path='/workouts'>
             <AuthWorkouts />

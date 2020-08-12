@@ -1,8 +1,20 @@
 import React from 'react';
 import { Menu, Button } from 'semantic-ui-react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../../services/use-auth';
+import messageService from '../../services/message.service';
 
-export default function Navbar({ user, logout }) {
+export default function Navbar() {
+  const { user, logout } = useAuth()
+  const history = useHistory()
+
+  const handleLogout = () => {
+    logout()
+    messageService.success(
+      `${user?.firstName} has logged out. Come back soon!`
+    );
+    history.push('/')
+  }
   return (
     <Menu stackable fixed='top'>
       <Menu.Item header>TheBestWorkOutAppEver</Menu.Item>
@@ -20,7 +32,7 @@ export default function Navbar({ user, logout }) {
       )}
       <Menu.Menu position='right'>
         {user ? (
-          <Menu.Item name='logout' onClick={logout} />
+          <Menu.Item name='logout' onClick={handleLogout} />
         ) : (
           <>
             <Menu.Item name='signIn' as={NavLink} to='/signIn' />

@@ -35,15 +35,12 @@ export default function WorkoutDetail() {
   });
 
   const OnSubmit = ({ exercises }) => {
-    setLoading(prev => ({ ...prev, component: true }));
     workoutService
       .update({ id, exercises })
       .then(updatedWorkout => {
-        setLoading(prev => ({ ...prev, component: false }));
         messageService.success('Workout Updated!');
       })
       .catch(error => {
-        setLoading(prev => ({ ...prev, component: false }));
         messageService.error('Something went wrong!');
       });
   };

@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 export default function ExerciseList({ exercises }) {
   const history = useHistory();
 
-  const onItemClick = (_, {id}) => {
-    history.push('/exercises/' + id)
+  const onItemClick = (_, { id }) => {
+    history.push('/exercises/' + id);
   };
 
   const listItems = exercises.map(({ id, name, image, equipment }) => {

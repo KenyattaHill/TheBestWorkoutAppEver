@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import { Form, Message, Segment } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import messageService from '../../services/message.service';
 import { useAuth } from '../../services/use-auth';
+import { useService } from '../../services/use-service';
 
 export default function SignIn() {
   const { signIn } = useAuth();
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const [loading, setLoading] = useState(false);
+  const { messageService } = useService();
 
   const OnSubmit = data => {
     setLoading(true);
     signIn(data)
-      .then((firstName) => {
+      .then(firstName => {
         messageService.info(`Welcome ${firstName}`);
         setLoading(false);
         history.push('/');

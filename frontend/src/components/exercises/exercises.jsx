@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import ExerciseFilter from './exercise-filter';
 import ExerciseList from './exercise-list';
 import { Segment } from 'semantic-ui-react';
-import messageService from '../../services/message.service';
 import { useService } from '../../services/use-service';
 
 export default function Exercises() {
   const [filter, setFilter] = useState({});
   const [exercises, setExercises] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { exerciseService } = useService();
+  const { exerciseService, messageService } = useService();
   const defaultFilter = {
     searchName: '',
     category: 0,
@@ -31,7 +30,7 @@ export default function Exercises() {
           error?.response?.data?.message || 'Something went wrong'
         );
       });
-  }, [filter, exerciseService]);
+  }, [filter, exerciseService, messageService]);
 
   return (
     <Segment loading={loading}>

@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory, NavLink } from 'react-router-dom';
-import messageService from '../../services/message.service';
-import {
-  Header,
-  Image,
-  Grid,
-  Breadcrumb,
-  Segment,
-} from 'semantic-ui-react';
+import { Header, Image, Grid, Breadcrumb, Segment } from 'semantic-ui-react';
 import { useService } from '../../services/use-service';
 
 export default function ExerciseDetail() {
@@ -15,7 +8,7 @@ export default function ExerciseDetail() {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const history = useHistory();
-  const { exerciseService } = useService();
+  const { exerciseService, messageService } = useService();
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +22,7 @@ export default function ExerciseDetail() {
         messageService.error('Sorry that exercise does not exist!');
         history.push('/');
       });
-  }, [id, history, exerciseService]);
+  }, [id, history, exerciseService, messageService]);
 
   return (
     <Segment className='exerciseDetail' padded loading={loading}>

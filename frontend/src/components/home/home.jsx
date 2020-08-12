@@ -9,18 +9,19 @@ export default function Home() {
     '“Success isn’t always about greatness. It’s about consistency. Consistent hard work gains success. Greatness will come.”',
     '“Suck it up. And one day you won’t have to suck it in.”',
   ];
-  const getRandomQuote = array => array[Math.ceil(Math.random() * array.length -1)] 
-  const [quote, setQuote] = useState(getRandomQuote(quotes))
-  
+  const getRandomQuote = array =>
+    array[Math.ceil(Math.random() * array.length - 1)];
+  const [quote, setQuote] = useState(getRandomQuote(quotes));
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setQuote(getRandomQuote(quotes))
-    }, 3000)
+      setQuote(getRandomQuote(quotes));
+    }, 3000);
 
     return () => {
-      clearInterval(interval)
-    }
-  }, [quotes])
+      clearInterval(interval);
+    };
+  }, [quotes]);
 
   return (
     <Segment padded className='home'>
@@ -34,7 +35,8 @@ export default function Home() {
       </p>
       <h2>Tools</h2>
       <p>
-        We have wide variety of exercises for every body part for you to build the perfect workout.
+        We have wide variety of exercises for every body part for you to build
+        the perfect workout.
       </p>
 
       <h2>Inspiration</h2>

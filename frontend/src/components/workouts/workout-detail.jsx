@@ -13,7 +13,6 @@ import {
 } from 'semantic-ui-react';
 import WorkoutSets from './workout-sets';
 import { useParams, useHistory, Link } from 'react-router-dom';
-import messageService from '../../services/message.service';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { debounce } from 'lodash';
 import { useService } from '../../services/use-service';
@@ -24,7 +23,7 @@ export default function WorkoutDetail() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const { workoutService, exerciseService } = useService();
+  const { workoutService, exerciseService, messageService } = useService();
   const { id } = useParams();
   const history = useHistory();
 
@@ -63,7 +62,7 @@ export default function WorkoutDetail() {
         messageService.error('Sorry that workout does not exist!');
         history.push('/');
       });
-  }, [id, history, reset]);
+  }, [id, history, reset, workoutService, messageService]);
 
   const handleSearchChange = (e, { value }) => {
     setLoading(prev => ({ ...prev, search: true }));

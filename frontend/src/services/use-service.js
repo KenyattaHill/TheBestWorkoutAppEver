@@ -3,6 +3,7 @@ import axios from 'axios'
 import ExerciseService from './exercises.service';
 import { useAuth } from './use-auth';
 import WorkoutService from './workouts.service';
+import MessageService from './message.service';
 
 const serviceContext = createContext();
 
@@ -22,9 +23,11 @@ function useProvideService() {
   })
   const workoutService = new WorkoutService(client)
   const exerciseService = new ExerciseService(client)
+  const messageService = new MessageService()
 
   return {
     exerciseService,
-    workoutService
+    workoutService,
+    messageService
   }
 }

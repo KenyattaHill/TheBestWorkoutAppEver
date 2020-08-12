@@ -14,7 +14,6 @@ import NotFound from './components/not-found/not-found';
 import ExerciseDetail from './components/exercises/exercise-detail';
 import WorkoutDetail from './components/workouts/workout-detail';
 
-
 function App() {
 
   const AuthWorkouts = authGuard(Workouts);

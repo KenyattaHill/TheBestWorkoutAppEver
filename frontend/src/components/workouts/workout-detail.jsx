@@ -134,6 +134,7 @@ export default function WorkoutDetail() {
         {fields.map((field, index) => (
           <Form.Field key={field.key}>
             <Form.Button
+              icon
               circular
               floated='right'
               type='button'
@@ -164,7 +165,7 @@ export default function WorkoutDetail() {
               ref={register()}
               defaultValue={field.comment}
             />
-            <Header as={Link} to={`/exercises/${field.id}`}  size='large'>
+            <Header as={Link} to={`/exercises/${field.id}`} size='large'>
               {field.image && <Image avatar src={field.image} />}
               {field.name}
             </Header>

@@ -24,7 +24,7 @@ const signIn = ({ userName, password }) =>
 const logout = (history) => {
   const user = getCurrentUser();
   localStorage.removeItem(USER_KEY);
-  messageService.info(`${user.firstName} has logged out. Come back soon!`);
+  messageService.info(`${user?.firstName} has logged out. Come back soon!`);
   history.push('/signIn')
 };
 

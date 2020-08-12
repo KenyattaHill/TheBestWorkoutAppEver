@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-export default class MessageService{
+export default class MessageService {
   constructor() {
     this.toastConfig = {
       position: 'bottom-right',

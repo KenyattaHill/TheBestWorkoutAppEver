@@ -1,5 +1,5 @@
 
-export default class WorkoutService{
+export default class WorkoutService {
 
   constructor(axios) {
     this.axios = axios
@@ -21,7 +21,7 @@ export default class WorkoutService{
     return this.axios.delete(this.BASE_URL + id)
   }
 
-  update({id, name, exercises}) {
+  update({ id, name, exercises }) {
     return this.axios.put(this.BASE_URL + id, { name, exercises }).then(response => response.data)
   }
 }

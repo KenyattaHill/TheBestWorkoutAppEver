@@ -34,6 +34,3 @@ export default class ExerciseService {
     return this.workoutManager('filter/equipment').then(response => response.equipment.map(({ id, name }) => ({ key: id, value: id, text: name })))
   }
 }
-
-
-//filter by category, equipment, muscle

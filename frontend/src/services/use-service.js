@@ -19,7 +19,7 @@ export const useService = () => {
 function useProvideService() {
   const { user } = useAuth();
   const client = axios.create({
-    headers:{ 'x-access-token': user?.accessToken}
+    headers: { 'x-access-token': user?.accessToken }
   })
   const workoutService = new WorkoutService(client)
   const exerciseService = new ExerciseService(client)
